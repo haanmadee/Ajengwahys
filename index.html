@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vogue Style Slider (Revised V3)</title>
+    <title>Vogue Style Slider (Refined Layout)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
@@ -13,7 +13,7 @@
             font-family: 'Montserrat', sans-serif; 
             background-color: #e8e8e8;
             display: flex;
-            align-items: flex-start; 
+            align-items: flex-start; /* Konten mulai dari atas */
             justify-content: center;
             min-height: 100vh;
             margin: 0;
@@ -26,6 +26,7 @@
             position: relative;
             overflow: hidden;
             background-color: #e8e8e8;
+            /* DESKTOP: Full Screen */
             width: 100vw;
             height: 100vw;
             max-height: 100vh; 
@@ -47,17 +48,22 @@
             position: relative;
             overflow: hidden;
             display: flex;
-            align-items: center;
+            align-items: center; /* Default vertical center desktop */
             padding: 0 5%;
         }
         
         /* --- LOGIKA MOBILE (GAP FIX) --- */
         @media (max-width: 767px) {
-            body { padding-top: 0; margin-top: 0; }
+            body { 
+                padding-top: 0; 
+                margin-top: 0;
+            }
 
             #editorial-container {
                 width: 600px;
                 height: 600px; 
+                
+                /* Scale down agar muat di lebar HP */
                 transform: scale(calc(100vw / 600));
                 transform-origin: top left;
                 margin: 0;
@@ -66,13 +72,17 @@
             .slide { 
                 padding: 0 25px; 
                 align-items: flex-start; 
-                /* REVISI V3: Padding top dikurangi lagi agar makin ke atas */
-                padding-top: 35px; 
+                /* PERBAIKAN 1: Padding top dikurangi agar naik */
+                padding-top: 55px; 
             }
         }
         
+        /* Desktop override */
         @media (min-width: 768px) {
-            .slide { align-items: center; padding-top: 0; }
+            .slide {
+                align-items: center; 
+                padding-top: 0;
+            }
         }
 
         /* --- ANIMATION --- */
@@ -109,27 +119,30 @@
                 <div class="blob w-80 h-80 top-10 right-1/4 reveal-shape d-500"></div>
                 <div class="grid grid-cols-12 w-full h-full items-start md:items-center"> 
                     
-                    <div class="col-span-5 flex flex-col items-start -mt-4 md:mt-0 relative reveal-left d-100 h-[75%] md:h-[85%]">
-                        <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764744948136_5742658.png" 
-                              class="w-full h-full object-contain object-bottom reveal-img" alt="Model Portrait">
-                        <div class="absolute bottom-10 -right-5 text-4xl md:text-7xl font-bold text-gray-100 -z-10 serif-font">01</div>
+                    <div class="col-span-5 flex flex-col items-start mt-0 md:mt-0 relative reveal-left d-100">
+                        <div class="relative w-full h-[50%] md:h-[60%]">
+                            <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764744948136_5742658.png" 
+                                  class="w-full h-full object-contain shadow-xl reveal-img" alt="Model Portrait">
+                            <div class="absolute -bottom-5 -right-5 text-4xl md:text-7xl font-bold text-gray-100 -z-10 serif-font">01</div>
+                        </div>
+
+                        <button class="mt-4 px-3 py-2 bg-black text-white text-[8px] md:text-xs tracking-widest hover:bg-grey-500 transition-colors reveal-text d-500 whitespace-nowrap">
+                            ABOUT ME ￫
+                        </button>
                     </div>
 
-                    <div class="col-span-7 pl-6 md:pl-16 relative -mt-12 md:mt-0">
+                    <div class="col-span-7 pl-6 md:pl-16 relative mt-2 md:mt-0">
                         <h4 class="text-[9px] md:text-xs font-bold tracking-[0.2em] text-gray-500 mb-1 reveal-text d-200">PROFILE</h4>
                         <h1 class="text-3xl md:text-6xl font-serif leading-tight mb-2 md:mb-4 reveal-text d-300">
                             +6 YEARS <br> <span class="italic text-navy-500">REMOTE WORKER</span>
                         </h1>
-                        <div class="flex items-center gap-3 reveal-text d-400 mb-4">
+                        <div class="flex items-center gap-3 reveal-text d-400">
                             <div class="h-[1px] w-8 md:w-16 bg-black"></div>
                             <p class="text-[10px] md:text-sm max-w-xs text-gray-600 leading-snug">
                                 Aku Ajeng, remote worker sejak 6 tahun lalu, sekarang sambil jadi mom full energy.
                             </p>
                         </div>
-                         <button class="px-3 py-2 bg-black text-white text-[8px] md:text-xs tracking-widest hover:bg-grey-500 transition-colors reveal-text d-500 whitespace-nowrap">
-                            FIND YOURS
-                        </button>
-                    </div>
+                        </div>
                 </div>
             </div>
 
@@ -141,7 +154,7 @@
                         </h1>
                     </div>
                     
-                    <div class="col-span-5 flex flex-col justify-center px-2 md:px-8 z-20 -mt-4 md:mt-0">
+                    <div class="col-span-5 flex flex-col justify-center px-2 md:px-8 z-20 mt-2 md:mt-0">
                         <div class="border-t-4 border-black w-8 md:w-14 mb-2 md:mb-4 reveal-left d-200"></div>
                         <h2 class="text-xl md:text-3xl font-serif font-bold mb-2 reveal-left d-300">Awal Karier <br>di Dunia Remote</h2>
                         <p class="text-gray-500 text-[9px] md:text-sm leading-snug mb-3 reveal-left d-400">
@@ -163,7 +176,7 @@
             <div class="slide bg-[#e8e8e8]">
                 <div class="grid grid-cols-12 w-full h-full px-4 md:px-8 relative items-start md:items-center">
                     
-                    <div class="col-span-5 flex flex-col justify-center z-30 relative pl-2 md:pl-8 -mt-4 md:mt-0">
+                    <div class="col-span-5 flex flex-col justify-center z-30 relative pl-2 md:pl-8 mt-2 md:mt-0">
                          <h2 class="text-[9px] md:text-xs font-bold tracking-[0.3em] text-navy-600 mb-2 reveal-left d-200 uppercase flex items-center gap-2">
                              <span class="w-4 h-[2px] bg-navy-600"></span> Moment
                          </h2>
@@ -176,7 +189,7 @@
                     </div>
 
                     <div class="col-span-7 h-full flex items-start md:items-center relative z-10 reveal-right d-300">
-                        <div class="w-full h-[120%] md:h-[85%] relative overflow-hidden z-10 -mt-20 md:mt-0">
+                        <div class="w-full h-[85%] md:h-[65%] relative overflow-hidden shadow-xl z-10 mt-0 md:mt-0">
                             <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764749073200_7413069.png" 
                                   class="w-full h-full object-contain object-bottom reveal-img" alt="Main Fashion Shot" />
                         </div>
@@ -186,7 +199,7 @@
 
             <div class="slide bg-white">
                 <div class="grid grid-cols-12 w-full h-full items-start md:items-center px-4 md:px-8">
-                    <div class="col-span-5 relative z-20 -mt-4 md:mt-0">
+                    <div class="col-span-5 relative z-20 mt-2 md:mt-0">
                         <div class="text-[4rem] md:text-[8rem] font-serif font-bold text-gray-100 absolute -top-10 left-0 -z-10 reveal-text d-100">04</div>
                         <h2 class="text-xl md:text-4xl font-serif font-bold mb-2 reveal-left d-200">Let’s build <br> <span class="text-navy-500 italic">your remote journey</span></h2>
                         <p class="text-gray-600 mb-4 leading-snug w-full reveal-left d-300 text-[9px] md:text-base">
@@ -197,9 +210,9 @@
                         </div>
                     </div>
                     
-                    <div class="col-span-7 h-full relative reveal-right d-300 -mt-8 md:mt-0 flex justify-end">
+                    <div class="col-span-7 h-[60%] md:h-[65%] relative reveal-right d-300 mt-2 md:mt-0">
                         <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764750769402_2380678.png" 
-                              class="w-full h-full object-cover object-right reveal-img" alt="Muse">
+                              class="w-full h-full object-contain reveal-img" alt="Muse">
                     </div>
                 </div>
             </div>
