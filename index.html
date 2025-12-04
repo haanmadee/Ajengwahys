@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vogue Style Slider (Fixed Top Gap)</title>
+    <title>Vogue Style Slider (Refined Layout)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
@@ -13,11 +13,8 @@
             font-family: 'Montserrat', sans-serif; 
             background-color: #e8e8e8;
             display: flex;
-            
-            /* PERUBAHAN 1: Paksa konten mulai dari ATAS (bukan tengah) */
-            align-items: flex-start; 
+            align-items: flex-start; /* Konten mulai dari atas */
             justify-content: center;
-            
             min-height: 100vh;
             margin: 0;
             overflow: hidden; 
@@ -51,14 +48,13 @@
             position: relative;
             overflow: hidden;
             display: flex;
-            align-items: center; /* Default vertical center */
+            align-items: center; /* Default vertical center desktop */
             padding: 0 5%;
         }
         
         /* --- LOGIKA MOBILE (GAP FIX) --- */
         @media (max-width: 767px) {
             body { 
-                /* Pastikan tidak ada padding bawaan browser */
                 padding-top: 0; 
                 margin-top: 0;
             }
@@ -69,26 +65,22 @@
                 
                 /* Scale down agar muat di lebar HP */
                 transform: scale(calc(100vw / 600));
-                
-                /* PERUBAHAN 2: Titik tumpu di KIRI ATAS mentok */
                 transform-origin: top left;
-                
-                /* Hapus semua margin eksternal */
                 margin: 0;
             }
 
             .slide { 
                 padding: 0 25px; 
-                /* Geser konten slide sedikit ke atas di HP */
                 align-items: flex-start; 
-                padding-top: 80px; /* Kompensasi untuk Navigasi */
+                /* PERBAIKAN 1: Padding top dikurangi agar naik */
+                padding-top: 55px; 
             }
         }
         
-        /* Desktop override untuk slide alignment */
+        /* Desktop override */
         @media (min-width: 768px) {
             .slide {
-                align-items: center; /* Desktop tetap di tengah vertikal */
+                align-items: center; 
                 padding-top: 0;
             }
         }
@@ -125,13 +117,21 @@
 
             <div class="slide bg-[#e8e8e8] active">
                 <div class="blob w-80 h-80 top-10 right-1/4 reveal-shape d-500"></div>
-                <div class="grid grid-cols-12 w-full h-full items-start md:items-center"> <div class="col-span-5 h-[50%] md:h-[60%] relative reveal-left d-100 mt-4 md:mt-0">
-                        <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764744948136_5742658.png" 
-                              class="w-full h-full object-contain shadow-xl reveal-img" alt="Model Portrait">
-                        <div class="absolute -bottom-5 -right-5 text-4xl md:text-7xl font-bold text-gray-100 -z-10 serif-font">01</div>
+                <div class="grid grid-cols-12 w-full h-full items-start md:items-center"> 
+                    
+                    <div class="col-span-5 flex flex-col items-start mt-0 md:mt-0 relative reveal-left d-100">
+                        <div class="relative w-full h-[50%] md:h-[60%]">
+                            <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764744948136_5742658.png" 
+                                  class="w-full h-full object-contain shadow-xl reveal-img" alt="Model Portrait">
+                            <div class="absolute -bottom-5 -right-5 text-4xl md:text-7xl font-bold text-gray-100 -z-10 serif-font">01</div>
+                        </div>
+
+                        <button class="mt-4 px-3 py-2 bg-black text-white text-[8px] md:text-xs tracking-widest hover:bg-grey-500 transition-colors reveal-text d-500 whitespace-nowrap">
+                            FIND YOURS
+                        </button>
                     </div>
 
-                    <div class="col-span-7 pl-6 md:pl-16 relative mt-6 md:mt-0">
+                    <div class="col-span-7 pl-6 md:pl-16 relative mt-2 md:mt-0">
                         <h4 class="text-[9px] md:text-xs font-bold tracking-[0.2em] text-gray-500 mb-1 reveal-text d-200">PROFILE</h4>
                         <h1 class="text-3xl md:text-6xl font-serif leading-tight mb-2 md:mb-4 reveal-text d-300">
                             +6 YEARS <br> <span class="italic text-navy-500">REMOTE WORKER</span>
@@ -142,10 +142,7 @@
                                 Aku Ajeng, remote worker sejak 6 tahun lalu, sekarang sambil jadi mom full energy.
                             </p>
                         </div>
-                        <button class="mt-4 md:mt-8 px-4 md:px-6 py-2 bg-black text-white text-[9px] md:text-xs tracking-widest hover:bg-grey-500 transition-colors reveal-text d-500">
-                            FIND YOURS
-                        </button>
-                    </div>
+                        </div>
                 </div>
             </div>
 
@@ -157,7 +154,7 @@
                         </h1>
                     </div>
                     
-                    <div class="col-span-5 flex flex-col justify-center px-2 md:px-8 z-20 mt-8 md:mt-0">
+                    <div class="col-span-5 flex flex-col justify-center px-2 md:px-8 z-20 mt-2 md:mt-0">
                         <div class="border-t-4 border-black w-8 md:w-14 mb-2 md:mb-4 reveal-left d-200"></div>
                         <h2 class="text-xl md:text-3xl font-serif font-bold mb-2 reveal-left d-300">Awal Karier <br>di Dunia Remote</h2>
                         <p class="text-gray-500 text-[9px] md:text-sm leading-snug mb-3 reveal-left d-400">
@@ -178,7 +175,8 @@
 
             <div class="slide bg-[#e8e8e8]">
                 <div class="grid grid-cols-12 w-full h-full px-4 md:px-8 relative items-start md:items-center">
-                    <div class="col-span-5 flex flex-col justify-center z-30 relative pl-2 md:pl-8 mt-10 md:mt-0">
+                    
+                    <div class="col-span-5 flex flex-col justify-center z-30 relative pl-2 md:pl-8 mt-2 md:mt-0">
                          <h2 class="text-[9px] md:text-xs font-bold tracking-[0.3em] text-navy-600 mb-2 reveal-left d-200 uppercase flex items-center gap-2">
                              <span class="w-4 h-[2px] bg-navy-600"></span> Moment
                          </h2>
@@ -189,10 +187,11 @@
                              Masuk 2020, pandemi datang dan aku kena layoff. Tapi karena sudah siap, transisinya mulus.
                          </p>
                     </div>
-                    <div class="col-span-7 h-full flex items-center relative z-10 reveal-right d-300">
-                        <div class="w-[95%] h-[55%] md:h-[65%] relative overflow-hidden shadow-xl z-10 mt-8 md:mt-0">
+
+                    <div class="col-span-7 h-full flex items-start md:items-center relative z-10 reveal-right d-300">
+                        <div class="w-full h-[85%] md:h-[65%] relative overflow-hidden shadow-xl z-10 mt-0 md:mt-0">
                             <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764749073200_7413069.png" 
-                                  class="w-full h-full object-contain reveal-img" alt="Main Fashion Shot" />
+                                  class="w-full h-full object-contain object-bottom reveal-img" alt="Main Fashion Shot" />
                         </div>
                     </div>
                 </div>
@@ -200,7 +199,7 @@
 
             <div class="slide bg-white">
                 <div class="grid grid-cols-12 w-full h-full items-start md:items-center px-4 md:px-8">
-                    <div class="col-span-5 relative z-20 mt-12 md:mt-0">
+                    <div class="col-span-5 relative z-20 mt-2 md:mt-0">
                         <div class="text-[4rem] md:text-[8rem] font-serif font-bold text-gray-100 absolute -top-10 left-0 -z-10 reveal-text d-100">04</div>
                         <h2 class="text-xl md:text-4xl font-serif font-bold mb-2 reveal-left d-200">Let’s build <br> <span class="text-navy-500 italic">your remote journey</span></h2>
                         <p class="text-gray-600 mb-4 leading-snug w-full reveal-left d-300 text-[9px] md:text-base">
@@ -210,7 +209,8 @@
                             <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764750832887_7838923.png" class="w-16 h-20 md:w-24 md:h-32 object-cover grayscale" alt="Thumb">
                         </div>
                     </div>
-                    <div class="col-span-7 h-[60%] md:h-[65%] relative reveal-right d-300 mt-4 md:mt-0">
+                    
+                    <div class="col-span-7 h-[60%] md:h-[65%] relative reveal-right d-300 mt-2 md:mt-0">
                         <img src="https://cdn.lynkid.my.id/draft-products/03-12-2025/1764750769402_2380678.png" 
                               class="w-full h-full object-contain reveal-img" alt="Muse">
                     </div>
